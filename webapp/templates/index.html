@@ -2,17 +2,19 @@
 
 {% block content %}
 
-    <div class="container-fluid d-flex flex-row p-5">
-        <div class="col-3 d-flex align-items-center">
-            <div class="container rounded p-3" id="info">
+    <div class="container-fluid d-flex flex-row px-5">
 
-                <h3>What is this?</h3> 
+        <div class="col-3 d-flex align-items-center">
+
+            <div class="container rounded p-3 shadow" id="info">
+
+                <h3 class="info-label">What is this?</h3> 
                 <p> Add color to your grayscale image! The Colorful Image Colorizer (CIC) is an AI model built to colorize. Try it out!</p>
         
                 <hr class="dropdown-divider">
 
         
-                <h3>Instructions</h3>
+                <h3 class="info-label">Instructions</h3>
 
                 <div class="container d-flex flex-row">
                     <img style="zoom: 5%" src="{{ url_for('static', filename='img/info_1_img.png')}}" alt="info-1.png">
@@ -28,18 +30,53 @@
                 </div>
 
             </div>
+
         </div>
 
         <div class="col-1"></div>
 
-        <div class="col-8 debug2">
+        <div class="col-8 d-flex align-items-center">
 
-            <div class="container-fluid debug1"> upload button here</div>
+            <div class="container bisque shadow rounded mt-5">
+                <div class="container-fluid d-flex flex-row">
+    
+                    <div class="col-5">
+                        <button type="button" class="btn mt-4 ms-2">Upload Image</button>
 
-            <div class="container-fluid d-flex flex-row">
-                <div class="col-6">Grayscale image here</div>
-                <div class="col-6">Colorized here</div>
+                        <div class="container img-box mt-5 ms-5" id="gscale-box">
+                            <img>
+                        </div>
+
+                        <div class="container d-flex flex-column">
+                            
+                            <button type="button" class="btn mt-4 ms-2 align-self-center">Colorize!</button>
+
+                            <button type="button" class="btn mt-4 ms-2 align-self-center">Download Images</button>
+                        </div>
+
+
+
+    
+                    </div>
+    
+                    <div class="col-7  d-flex flex-column align-items-center justify-content-center">
+                        <div class="container img-box mt-4 mb-2" id="eccv-box">
+                            <img>
+                            
+                        </div>
+                        <h6>ECCV16</h6>
+                        <div class="container img-box mb-2" id="siggraph-box">
+                            <img>
+                            
+                        </div>
+                        <h6>SIGGRAPH17</h6>
+    
+                    </div>
+    
+                </div>
             </div>
+
+            
         </div>
     </div>
     
