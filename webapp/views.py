@@ -8,8 +8,8 @@ def index():
 
 @digiapp.route('/mechanisms')
 def about():
-    return "About"
+    return render_template('mechanisms.html')
 
 @digiapp.route('/team')
 def team():
-    return "Team tab here"
+    return render_template('team.html')
