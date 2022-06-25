@@ -4,20 +4,55 @@
 
 {%block content%}
 
+<div class="container-fluid pt-5 ps-5">
+
+    <h1 style="font-family: 'Titan One', cursive;">Below Average</h1>
+    <p>Below you will find the team members responsible for creating this webapp for their DIGIMAP class.</p>
+
+
+</div>
+
 <div class="container-fluid d-flex flex-row">
 
     <div class="col-6">
 
-        <div class="container teal">Member 1 here
+        <div class="container p-3">
+            <div class="container d-flex justify-content-center align-items-center flex-column">
+
+                <img class="team-member-pic mb-3" src="{{url_for('static', filename='img/TM1.jpg')}}">
+                <h6>Ralph Matthew H. Sanson</h6>
+            </div>
+        </div>
+
+        <div class="container p-3"> 
+
+            <div class="container  d-flex justify-content-center align-items-center flex-column">
+                <img class="team-member-pic mb-3" src="{{url_for('static', filename='img/TM2.jpg')}}">
+                <h6>Rayvhen Mico Rosima</h6>
+            </div>
 
         </div>
-        <div class="container teal"> Member 2 here</div>
     </div>
 
     <div class="col-6">
 
-        <div class="container teal"> Member 3 here</div>
-        <div class="container teal"> member 4 here</div>
+        <div class="container p-3">
+
+            <div class="container d-flex justify-content-center align-items-center flex-column">
+                <img class="team-member-pic mb-3" src="{{url_for('static', filename='img/TM1.jpg')}}">
+                <h6>Vincent B. Ilagan</h6>
+            </div>
+
+        </div>
+
+        <div class="container p-3"> 
+
+            <div class="container d-flex justify-content-center align-items-center flex-column">
+                <img class="team-member-pic mb-3" src="{{url_for('static', filename='img/TM1.jpg')}}">
+                <h6>Julian Sunpayco</h6>
+            </div>
+
+        </div>
     </div>
 </div>
 
