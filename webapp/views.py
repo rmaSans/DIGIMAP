@@ -1,8 +1,15 @@
-from flask import Blueprint, render_template 
+from webapp import digiapp
+from flask import render_template
 
-views = Blueprint('views', __name__)
 
-@views.route('/')
+@digiapp.route('/')
+def index():
+    return render_template('index.html')
 
-def home():
-    return render_template('home.html')
+@digiapp.route('/mechanisms')
+def about():
+    return "About"
+
+@digiapp.route('/team')
+def team():
+    return "Team tab here"

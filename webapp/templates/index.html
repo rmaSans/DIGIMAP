@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container-fluid d-flex flex-row p-5">
+        <div class="col-3 d-flex align-items-center">
+            <div class="container rounded p-3" id="info">
+
+                <h3>What is this?</h3> 
+                <p> Add color to your grayscale image! The Colorful Image Colorizer (CIC) is an AI model built to colorize. Try it out!</p>
+        
+                <hr class="dropdown-divider">
+
+        
+                <h3>Instructions</h3>
+
+                <div class="container d-flex flex-row">
+                    <img style="zoom: 5%" src="{{ url_for('static', filename='img/info_1_img.png')}}" alt="info-1.png">
+                    <p>Look for the upload button and select your image. This ONLY works for PNG images.</p>
+                </div>
+                <div class="container-fluid d-flex flex-row">
+                    <img style="zoom: 5%" src="{{ url_for('static', filename='img/info_2_img.png')}}" alt="info-1.png">
+                    <p>Wait for the Colorful Image Colorizer to do its job.</p>
+                </div>
+                <div class="container-fluid d-flex flex-row">
+                    <img style="zoom: 5%" src="{{ url_for('static', filename='img/info_3_img.png')}}" alt="info-1.png">
+                    <p>Download and enjoy your two colorized and upscaled images.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-1"></div>
+
+        <div class="col-8 debug2">
+
+            <div class="container-fluid debug1"> upload button here</div>
+
+            <div class="container-fluid d-flex flex-row">
+                <div class="col-6">Grayscale image here</div>
+                <div class="col-6">Colorized here</div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}
