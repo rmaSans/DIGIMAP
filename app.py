@@ -5,10 +5,9 @@ import os
 app = Flask(__name__)
 
 script_dir = Path(__file__).parent
-images_dir = Path("static" / "img" / "uploads")
+images_dir = script_dir/ "static" / "img" / "uploads"
 @app.route('/', methods=["GET", "POST"])
 def index():
-    print(images_dir)
     if request.method == "POST":
       if request.files:
         image = request.files["image"]
