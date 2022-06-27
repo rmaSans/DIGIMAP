@@ -54,8 +54,10 @@ body{
 
 }
 
-.team-member-pic{
+.team-member-pic,.gscale-img{
     max-width:300px;
     max-height:300px;
 }
+
+
 
