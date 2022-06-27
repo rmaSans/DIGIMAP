@@ -1,14 +1,18 @@
 from webapp import digiapp
 from flask import render_template, request, redirect
+from pathlib import Path
 import os
 
-digiapp.config["IMAGE_UPLOADS"] = "F:\\Users\\Tongki\\Desktop\\Term 2\\DIGIMAP\\Project\\DIGIMAP\\webapp\\static\\img\\uploads"
+script_dir = Path(__file__).parent
+images_dir = script_dir.parent /"webapp"/ "static" / "img" / "uploads"
 @digiapp.route('/', methods=["GET", "POST"])
 def index():
     if request.method == "POST":
       if request.files:
         image = request.files["image"]
-        image.save(os.path.join(digiapp.config["IMAGE_UPLOADS"], image.filename))
+      
+        image.save(os.path.join(images_dir, image.filename))
+
         return redirect(request.url)
     return render_template('index.html')
 
@@ -27,4 +31,5 @@ def team():
 #           image = request.files["image"]
 #           image.save(os.path.join(digiapp.config["IMAGE_UPLOADS"], image.filename))
 #           return redirect(request.url)
+
     

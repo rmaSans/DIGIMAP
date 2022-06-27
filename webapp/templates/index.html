@@ -18,7 +18,7 @@
 
                 <div class="container d-flex flex-row">
                     <img style="zoom: 5%" src="{{ url_for('static', filename='img/info_1_img.png')}}" alt="info-1.png">
-                    <p>Look for the upload button and select your image. This ONLY works for PNG images.</p>
+                    <p>Look for the upload button and select your image. This ONLY works for JPG/JPEG images.</p>
                 </div>
                 <div class="container-fluid d-flex flex-row">
                     <img style="zoom: 5%" src="{{ url_for('static', filename='img/info_2_img.png')}}" alt="info-1.png">
@@ -40,39 +40,37 @@
             <div class="container bisque shadow rounded mt-5">
                 <div class="container-fluid d-flex flex-row">
     
-                    <div class="col-5">
-                        <form action="/" method="POST"  enctype="multipart/form-data">
+                    <div class="col-5 d-flex flex-column justify-content-center align-items-center ps-5">
+
+                        <form action="/" method="POST"  enctype="multipart/form-data" class="d-flex justify-content-center align-items-center flex-column mt-4">
+
                           <div class="mb-3">
-                            <label class="form-label" for="image-input">Select image</label>
-                            <input type="file" class="form-control" name="image-input" id="image-input">
+                            <input type="file" class=" custom-file-input" name="image" id="image">
                           </div>
-                          <button type="submit" class="btn mt-4 ms-2">Upload Image</button>
+
+                          <button type="submit" class="btn ms-2">Upload Image</button>
+
                         </form>
-                        <div class="container img-box mt-5 ms-5" id="gscale-box">
+
+                        <div class="container img-box mt-3" id="gscale-box">
                             <img>
                         </div>
-
-                        <div class="container d-flex flex-column">
                             
-                            <button type="button" class="btn mt-4 ms-2 align-self-center">Colorize!</button>
+                        <button type="button" class="btn mt-4">Colorize!</button>
 
-                            <button type="button" class="btn mt-4 ms-2 align-self-center">Download Images</button>
-                        </div>
-
-
-
+                        <button type="button" class="btn mt-4 mb-3">Download Images</button>
     
                     </div>
     
-                    <div class="col-7  d-flex flex-column align-items-center justify-content-center">
+                    <div class="col-7  d-flex flex-column align-items-center justify-content-center ps-5">
                         <div class="container img-box mt-4 mb-2" id="eccv-box">
                             <img>
                             
                         </div>
                         <h6>ECCV16</h6>
                         <div class="container img-box mb-2" id="siggraph-box">
+
                             <img>
-                            
                         </div>
                         <h6>SIGGRAPH17</h6>
     
