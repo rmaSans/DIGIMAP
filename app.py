@@ -2,11 +2,11 @@ from flask import Flask,render_template, request, redirect
 from pathlib import Path
 import os
 
-digiapp = Flask(__name__)
+app = Flask(__name__)
 
 script_dir = Path(__file__).parent
 images_dir = script_dir.parent /"webapp"/ "static" / "img" / "uploads"
-@digiapp.route('/', methods=["GET", "POST"])
+@app.route('/', methods=["GET", "POST"])
 def index():
     if request.method == "POST":
       if request.files:
@@ -15,11 +15,11 @@ def index():
         return redirect(request.url)
     return render_template('index.html')
 
-@digiapp.route('/mechanisms')
+@app.route('/mechanisms')
 def about():
     return render_template('mechanisms.html')
 
-@digiapp.route('/team')
+@app.route('/team')
 def team():
     return render_template('team.html')
 
