@@ -44,20 +44,15 @@ body{
 }
 
 #gscale-box{
-    width:100%;
-    height:100%;
+    width:300px;
+    height:300px;
 }
 
 #eccv-box, #siggraph-box{
-    width: 90%;
-    height: 90%;
-
+    width: 270px;
+    height: 270px;
 }
 
-#siggraph-box{
-    width: 95%;
-    height: 95%;
-}
 
 .team-member-pic{
     max-width:100%;
@@ -66,8 +61,8 @@ body{
 
 
 .colorized-img, .gscale-img{
-    max-width:100%;
-    max-height:100%;
+    width:100%;
+    height:auto;
 }
 
 

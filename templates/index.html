@@ -51,48 +51,41 @@
 
                         </form>
 
-                        <div class="container img-box mt-3 d-flex justify-content-center align-items-center" id="gscale-box">
+                        <div class="container img-box mt-3 d-flex justify-content-center align-items-center p-3" id="gscale-box">
+
                             <img class="gscale-img" src="{{ url_for('static', filename='img/uploads/gs_image.jpg')}}" alt="">
+                            
                         </div>
                             
                         <a  class="btn mt-4" href="/colorize">Colorize!</a>
 
+                        <a class="btn mt-4" href="/download">Download Images</a>
+
     
                     </div>
     
-                    <div class="col-7   d-flex flex-column align-items-center justify-content-center ps-5">
+                    <div class="col-7   d-flex flex-column align-items-center justify-content-center  ps-5">
 
-                        <div class="container d-flex flex-row align-items-center justify-content-center">
 
-                            <div class="container d-flex flex-column align-items-center justify-content-center">
+                        <div class="container img-box d-flex align-items-center justify-content-center p-3 mb-2" id="eccv-box">
 
-                                <div class="container img-box d-flex align-items-center justify-content-center p-3 mb-2" id="eccv-box">
-                                    <img class="colorized-img" src="{{ url_for('static', filename='img/colorized/eccv.png')}}" alt="">
-                                </div>
-                                <h6>ECCV16</h6>
-
-                            </div>
-
-                            <a type="button" class="btn mt-4 mb-3" href="{{ url_for('static', filename='img/colorized/eccv.png')}}">Download ECCV16</a>
+                            <img class="colorized-img" src="{{url_for('static',filename='img/colorized/eccv.png')}}" alt="">
 
                         </div>
 
-                        <div class="container d-flex flex-row align-items-center justify-content-center">
-                            
-                            <div class="container d-flex flex-column align-items-center justify-content-center">
+                        <h6>ECCV16</h6>
 
-                                <div class="container img-box d-flex align-items-center justify-content-center p-3 mb-2" id="siggraph-box">
-                                    <img class="colorized-img" src="{{ url_for('static', filename='img/colorized/siggraph.png')}}" alt="">
-                                </div>
-                                <h6>SIGGRAPH17</h6>
+                        <div class="container img-box d-flex align-items-center justify-content-center p-3 mb-2" id="siggraph-box">
 
-                            </div>
-
-                            <a type="button" class="btn mt-4 mb-3" href="{{ url_for('static', filename='img/colorized/siggraph.png')}}">Download SIGGRAPH17</a>
+                            <img class="colorized-img" src="{{url_for('static',filename='img/colorized/siggraph.png')}}" alt="">
 
                         </div>
 
-                    </div>
+                        <h6>SIGGRAPH17</h6>
+
+                     
+
+             
     
                 </div>
             </div>
