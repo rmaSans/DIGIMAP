@@ -12,7 +12,6 @@
                 <p> Add color to your grayscale image! The Colorful Image Colorizer (CIC) is a collection of 2 AI models that colorize grayscale images. Created by Zhang, R., et al.(2016 & 2017) Try it out!</p>
         
                 <hr class="dropdown-divider">
-
         
                 <h3 class="info-label">Instructions</h3>
 
@@ -56,21 +55,24 @@
                             <img class="gscale-img" src="{{ url_for('static', filename='img/uploads/gs_image.jpg')}}" alt="">
                         </div>
                             
-                        <button type="button" class="btn mt-4" href="/colorize">Colorize!</button>
+                        <a  class="btn mt-4" href="/colorize">Colorize!</a>
 
                         <button type="button" class="btn mt-4 mb-3" href="/download">Download Images</button>
     
                     </div>
     
                     <div class="col-7  d-flex flex-column align-items-center justify-content-center ps-5">
-                        <div class="container img-box mt-4 mb-2" id="eccv-box">
-                            <img >
-                            
+
+                        <div class="container img-box mt-4 mb-2 d-flex align-items-center justify-content-center" id="eccv-box">
+
+                            <img class="colorized-img" src="{{ url_for('static', filename='img/colorized/eccv.png')}}" alt="">
+
                         </div>
                         <h6>ECCV16</h6>
-                        <div class="container img-box mb-2" id="siggraph-box">
 
-                            <img>
+                        <div class="container img-box mb-2 d-flex align-items-center justify-content-center" id="siggraph-box">
+
+                            <img class="colorized-img" src="{{ url_for('static', filename='img/colorized/siggraph.png')}}" alt="">
                         </div>
                         <h6>SIGGRAPH17</h6>
     

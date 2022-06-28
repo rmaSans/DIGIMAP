@@ -14,7 +14,6 @@ gs_dir = images_dir / "gs_image.jpg"
 eccv_dir = script_dir / "static" / "img" / "colorized" / "eccv.png"
 siggraph_dir = script_dir / "static" / "img" / "colorized" / "siggraph.png"
 
-
 @app.route('/', methods=["GET", "POST"])
 def index():
     if request.method == "POST":
@@ -34,16 +33,9 @@ def team():
 
 @app.route('/colorize')
 def colorize():
-    # parser = argparse.ArgumentParser()
-    # parser.add_argument('-i','--img_path', type=str, default='imgs/ansel_adams3.jpg')
-    # parser.add_argument('--use_gpu', action='store_true', help='whether to use GPU')
-    # parser.add_argument('-o','--save_prefix', type=str, default='saved', help='will save into this file with {eccv16.png, siggraph17.png} suffixes')
-    # opt = parser.parse_args()
-
     # load colorizers
     colorizer_eccv16 = eccv16(pretrained=True).eval()
     colorizer_siggraph17 = siggraph17(pretrained=True).eval()
-
 
     # default size to process images is 256x256
     # grab L channel in both original ("orig") and resized ("rs") resolutions
@@ -57,4 +49,6 @@ def colorize():
     plt.imsave(eccv_dir, out_img_eccv16)
     plt.imsave(siggraph_dir, out_img_siggraph17)    
 
-    return render_template('index.html')
+    return redirect('/')
+
+   
