@@ -2,9 +2,7 @@ from flask import Flask,render_template, request, redirect
 from pathlib import Path
 import os
 from colorizers import *
-import argparse
 import matplotlib.pyplot as plt
-from PIL import Image
 
 app = Flask(__name__)
 
@@ -50,5 +48,7 @@ def colorize():
     plt.imsave(siggraph_dir, out_img_siggraph17)    
 
     return redirect('/')
+
+
 
    

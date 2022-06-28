@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <div class="container-fluid d-flex flex-row px-5">
+    <div class="container-fluid d-flex flex-row p-5">
 
         <div class="col-3 d-flex align-items-center">
 
@@ -34,9 +34,9 @@
 
         <div class="col-1"></div>
 
-        <div class="col-8 d-flex align-items-center">
+        <div class="col-8 d-flex align-items-center justify-content-center">
 
-            <div class="container bisque shadow rounded mt-5">
+            <div class="container bisque shadow rounded py-5">
                 <div class="container-fluid d-flex flex-row">
     
                     <div class="col-5 d-flex flex-column justify-content-center align-items-center ps-5">
@@ -60,31 +60,38 @@
     
                     </div>
     
-                    <div class="col-7  d-flex flex-column align-items-center justify-content-center ps-5">
-                        <div class="container d-flex flex-row align-items-center justify-content-center">
-                            <div class="container d-flex flex-column align-items-center justify-content-center">
-                                <div class="container img-box mt-4 mb-2 d-flex align-items-center justify-content-center" id="eccv-box">
+                    <div class="col-7   d-flex flex-column align-items-center justify-content-center ps-5">
 
-                                <img class="colorized-img" src="{{ url_for('static', filename='img/colorized/eccv.png')}}" alt="">
-                                
-                                    
+                        <div class="container d-flex flex-row align-items-center justify-content-center">
+
+                            <div class="container d-flex flex-column align-items-center justify-content-center">
+
+                                <div class="container img-box d-flex align-items-center justify-content-center p-3 mb-2" id="eccv-box">
+                                    <img class="colorized-img" src="{{ url_for('static', filename='img/colorized/eccv.png')}}" alt="">
                                 </div>
                                 <h6>ECCV16</h6>
-                            </div>
-                            <a type="button" class="btn mt-4 mb-3" href="{{ url_for('static', filename='img/colorized/eccv.png')}}">Download ECCV16
-                            </a>
-                        </div>
-                        <div class="container d-flex flex-row align-items-center justify-content-center">
-                            <div class="container d-flex flex-column align-items-center justify-content-center">
-                                <div class="container img-box mb-2 d-flex align-items-center justify-content-center" id="siggraph-box">
 
+                            </div>
+
+                            <a type="button" class="btn mt-4 mb-3" href="{{ url_for('static', filename='img/colorized/eccv.png')}}">Download ECCV16</a>
+
+                        </div>
+
+                        <div class="container d-flex flex-row align-items-center justify-content-center">
+                            
+                            <div class="container d-flex flex-column align-items-center justify-content-center">
+
+                                <div class="container img-box d-flex align-items-center justify-content-center p-3 mb-2" id="siggraph-box">
                                     <img class="colorized-img" src="{{ url_for('static', filename='img/colorized/siggraph.png')}}" alt="">
                                 </div>
                                 <h6>SIGGRAPH17</h6>
+
                             </div>
-                            <a type="button" class="btn mt-4 mb-3" href="{{ url_for('static', filename='img/colorized/siggraph.png')}}">Download SIGGRAPH17
-                            </a>
+
+                            <a type="button" class="btn mt-4 mb-3" href="{{ url_for('static', filename='img/colorized/siggraph.png')}}">Download SIGGRAPH17</a>
+
                         </div>
+
                     </div>
     
                 </div>
