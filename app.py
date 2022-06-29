@@ -42,44 +42,50 @@ def team():
 @app.route('/colorize')
 def colorize():
 
-    colorizer_eccv16 = eccv16(pretrained=True).eval()
-    colorizer_siggraph17 = siggraph17(pretrained=True).eval()
+    if len(os.listdir(uploads_dir)) > 1:
+        colorizer_eccv16 = eccv16(pretrained=True).eval()
+        colorizer_siggraph17 = siggraph17(pretrained=True).eval()
 
-    # default size to process images is 256x256
-    # grab L channel in both original ("orig") and resized ("rs") resolutions
-    img = load_img(gs_dir)
-    (tens_l_orig, tens_l_rs) = preprocess_img(img, HW=(256,256))
+        # default size to process images is 256x256
+        # grab L channel in both original ("orig") and resized ("rs") resolutions
+        img = load_img(gs_dir)
+        (tens_l_orig, tens_l_rs) = preprocess_img(img, HW=(256,256))
 
-    img_bw = postprocess_tens(tens_l_orig, torch.cat((0*tens_l_orig,0*tens_l_orig),dim=1))
-    out_img_eccv16 = postprocess_tens(tens_l_orig, colorizer_eccv16(tens_l_rs).cpu())
-    out_img_siggraph17 = postprocess_tens(tens_l_orig, colorizer_siggraph17(tens_l_rs).cpu())
+        img_bw = postprocess_tens(tens_l_orig, torch.cat((0*tens_l_orig,0*tens_l_orig),dim=1))
+        out_img_eccv16 = postprocess_tens(tens_l_orig, colorizer_eccv16(tens_l_rs).cpu())
+        out_img_siggraph17 = postprocess_tens(tens_l_orig, colorizer_siggraph17(tens_l_rs).cpu())
 
-    plt.imsave(eccv_dir,out_img_eccv16)
-    plt.imsave(siggraph_dir ,out_img_siggraph17)  
-
+        plt.imsave(eccv_dir,out_img_eccv16)
+        plt.imsave(siggraph_dir ,out_img_siggraph17)
+    else:
+        flash("No files to colorize")
+    
     return redirect('/')
 
 @app.route('/download')
 def dl_img():
 
+    if len(os.listdir(colorized_dir)) > 1:
+        stream = BytesIO()
+        with ZipFile(stream, 'w') as zf:
+            for content in colorized_dir.iterdir():
+                zf.write(content, content.name)
 
-    stream = BytesIO()
-    with ZipFile(stream, 'w') as zf:
-        for content in colorized_dir.iterdir():
-            zf.write(content, content.name)
+        stream.seek(0)
 
-    stream.seek(0)
+        os.remove(gs_dir)
+        os.remove(eccv_dir)
+        os.remove(siggraph_dir)
+        can_dl = False
 
-    os.remove(gs_dir)
-    os.remove(eccv_dir)
-    os.remove(siggraph_dir)
-    can_dl = False
-
-    return send_file(
-        stream,
-        as_attachment=True,
-        attachment_filename='colorized.zip'
-    )
+        return send_file(
+            stream,
+            as_attachment=True,
+            attachment_filename='colorized.zip'
+        )
+    else:
+        flash("No files to download")
+        return redirect('/')
 
 
    
