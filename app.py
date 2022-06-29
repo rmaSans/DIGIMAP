@@ -8,7 +8,6 @@ from io import BytesIO
 
 
 app = Flask(__name__)
-app.secret_key = 'Some Random Bytes'
 script_dir = Path(__file__).parent
 uploads_dir = script_dir/ "static" / "img" / "uploads"
 colorized_dir = script_dir /"static" / "img" / "colorized"
@@ -73,7 +72,6 @@ def dl_img():
     os.remove(gs_dir)
     os.remove(eccv_dir)
     os.remove(siggraph_dir)
-    can_dl = False
 
     return send_file(
         stream,
