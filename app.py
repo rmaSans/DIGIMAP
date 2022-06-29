@@ -1,6 +1,6 @@
 import os
 import matplotlib.pyplot as plt
-from flask import Flask,render_template, request, redirect, send_file
+from flask import Flask, flash, render_template, request, redirect, send_file
 from zipfile import ZipFile
 from pathlib import Path
 from colorizers import *
@@ -8,7 +8,7 @@ from io import BytesIO
 
 
 app = Flask(__name__)
-
+app.secret_key = 'Some Random Bytes'
 script_dir = Path(__file__).parent
 uploads_dir = script_dir/ "static" / "img" / "uploads"
 colorized_dir = script_dir /"static" / "img" / "colorized"
@@ -16,14 +16,20 @@ gs_dir = uploads_dir / "gs_image.jpg"
 eccv_dir = script_dir / "static" / "img" / "colorized" / "eccv.png"
 siggraph_dir = script_dir / "static" / "img" / "colorized" / "siggraph.png"
 
-@app.route('/', methods=["GET", "POST"])
+@app.route('/')
 def index():
-    if request.method == "POST":
-      if request.files:
-        image = request.files["image"]
-        image.save(os.path.join(uploads_dir, "gs_image.jpg"))
-        return redirect(request.url)
     return render_template('index.html')
+
+@app.route('/', methods=["GET", "POST"])
+def uploading():
+    if request.files:
+        image = request.files["image"]
+        if image.filename == '':
+            flash('Choose an image')
+            return render_template('index.html')
+        else:
+            image.save(os.path.join(uploads_dir, "gs_image.jpg"))
+            return redirect(request.url)
 
 @app.route('/mechanisms')
 def about():
@@ -36,8 +42,6 @@ def team():
 @app.route('/colorize')
 def colorize():
 
-
-    # load colorizers
     colorizer_eccv16 = eccv16(pretrained=True).eval()
     colorizer_siggraph17 = siggraph17(pretrained=True).eval()
 
