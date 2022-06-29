@@ -41,25 +41,50 @@
     
                     <div class="col-5 d-flex flex-column justify-content-center align-items-center ps-5">
 
+                        <div class="flashwrapper">
+                            {% with messages = get_flashed_messages(with_categories=True) %}
+                                {% if messages %}
+                                    {% for category, message in messages %}
+                                        <div id=flashwrapper class="alert alert-{{ category }} alert-dismissible" role="alert">{{ message }}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endwith %}
+                        </div>
+                        
                         <form action="/" method="POST"  enctype="multipart/form-data" class="d-flex justify-content-center align-items-center flex-column mt-4">
 
                           <div class="mb-3">
                             <input type="file" class=" custom-file-input" name="image" id="image">
                           </div>
 
-                          <button type="submit" class="btn ms-2">Upload Image</button>
+                          <button type="submit" class="btn ms-2" disabled>Upload Image</button>
 
                         </form>
 
                         <div class="container img-box mt-3 d-flex justify-content-center align-items-center p-3" id="gscale-box">
 
                             <img class="gscale-img" src="{{ url_for('static', filename='img/uploads/gs_image.jpg')}}" alt="">
-                            
-                        </div>
-                            
-                        <a  class="btn mt-4" href="/colorize">Colorize!</a>
 
-                        <a class="btn mt-4" href="/download">Download Images</a>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a  class="btn mt-4" href="/colorize" onclick="loading();" id="colorBtn">Colorize!</a>
+                                <div class="spinner-border" role="status" id="loading" style="display:none">
+                                    <span class="sr-only"></span>
+                                </div>
+                                <script type="text/javascript">// <![CDATA[
+                                    function loading(){
+                                        $("#loading").show();
+                                        $("#colorBtn").hide();
+                                        $("#down").hide();
+                                    }
+                            // ]]></script>
+                            </div>
+                        </div>                        
+
+                        <a class="btn mt-4" href="/download" id="down">Download Images</a>
 
     
                     </div>
@@ -89,7 +114,6 @@
     
                 </div>
             </div>
-
             
         </div>
     </div>
