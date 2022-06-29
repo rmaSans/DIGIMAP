@@ -8,7 +8,6 @@ from io import BytesIO
 
 
 app = Flask(__name__)
-app.secret_key = 'Some Random Bytes'
 script_dir = Path(__file__).parent
 uploads_dir = script_dir/ "static" / "img" / "uploads"
 colorized_dir = script_dir /"static" / "img" / "colorized"
@@ -86,6 +85,7 @@ def dl_img():
     else:
         flash("No files to download")
         return redirect('/')
+
 
 
    
