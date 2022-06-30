@@ -1,0 +1,68 @@
+.navbar-brand{
+    font-family: 'Titan One', cursive;
+}
+
+.navbar{
+    background-color: #AFD9FF;
+}
+
+#info{
+    background-color:#AFD9FF;
+}
+
+
+.teal{
+    background-color: teal;
+}
+
+.bisque{
+    background-color:bisque;
+}
+
+.white{
+    background-color: white;
+}
+
+.btn{
+    background-color:#AFD9FF;
+}
+
+.info-label{
+    font-weight: bold;
+}
+
+body{
+    background-color: #e5e5f7;
+    opacity: 1;
+    background-image:  radial-gradient(#444cf7 0.5px, transparent 0.5px), radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
+    background-size: 20px 20px;
+}
+
+.img-box{
+    background-color: #D9D9D9; 
+    border-radius: 10px;
+}
+
+#gscale-box{
+    width:300px;
+    height:300px;
+}
+
+#eccv-box, #siggraph-box{
+    width: 270px;
+    height: 270px;
+}
+
+
+.team-member-pic{
+    max-width:100%;
+    max-height:100%;
+}
+
+
+.colorized-img, .gscale-img{
+    width:100%;
+    height:auto;
+}
+
+
