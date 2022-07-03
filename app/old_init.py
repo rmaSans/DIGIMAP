@@ -1,6 +1,9 @@
+from operator import truediv
 import os
+import uuid
 import matplotlib.pyplot as plt
-from flask import Flask, flash, render_template, request, redirect, send_file
+from flask import Flask, flash, render_template, request, redirect, send_file, session
+from flask_session import Session
 from zipfile import ZipFile
 from pathlib import Path
 from colorizers import *
@@ -15,6 +18,9 @@ colorized_dir = script_dir /"static" / "img" / "colorized"
 gs_dir = uploads_dir / "gs_image.jpg"
 eccv_dir = script_dir / "static" / "img" / "colorized" / "eccv.png"
 siggraph_dir = script_dir / "static" / "img" / "colorized" / "siggraph.png"
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 @app.route('/')
 def index():
@@ -28,6 +34,9 @@ def uploading():
             flash('Choose an image')
             return render_template('index.html')
         else:
+            checker = uuid.uuid4()
+            session['uid'] = checker
+            print(session.sid)
             image.save(os.path.join(uploads_dir, "gs_image.jpg"))
             return redirect(request.url)
 
@@ -43,20 +52,22 @@ def team():
 def colorize():
 
     if len(os.listdir(uploads_dir)) > 1:
-        colorizer_eccv16 = eccv16(pretrained=True).eval()
-        colorizer_siggraph17 = siggraph17(pretrained=True).eval()
+        if 'uid' in session:
+            print(session.sid)
+            colorizer_eccv16 = eccv16(pretrained=True).eval()
+            colorizer_siggraph17 = siggraph17(pretrained=True).eval()
 
-        # default size to process images is 256x256
-        # grab L channel in both original ("orig") and resized ("rs") resolutions
-        img = load_img(gs_dir)
-        (tens_l_orig, tens_l_rs) = preprocess_img(img, HW=(256,256))
+            # default size to process images is 256x256
+            # grab L channel in both original ("orig") and resized ("rs") resolutions
+            img = load_img(gs_dir)
+            (tens_l_orig, tens_l_rs) = preprocess_img(img, HW=(256,256))
 
-        img_bw = postprocess_tens(tens_l_orig, torch.cat((0*tens_l_orig,0*tens_l_orig),dim=1))
-        out_img_eccv16 = postprocess_tens(tens_l_orig, colorizer_eccv16(tens_l_rs).cpu())
-        out_img_siggraph17 = postprocess_tens(tens_l_orig, colorizer_siggraph17(tens_l_rs).cpu())
+            img_bw = postprocess_tens(tens_l_orig, torch.cat((0*tens_l_orig,0*tens_l_orig),dim=1))
+            out_img_eccv16 = postprocess_tens(tens_l_orig, colorizer_eccv16(tens_l_rs).cpu())
+            out_img_siggraph17 = postprocess_tens(tens_l_orig, colorizer_siggraph17(tens_l_rs).cpu())
 
-        plt.imsave(eccv_dir,out_img_eccv16)
-        plt.imsave(siggraph_dir ,out_img_siggraph17)
+            plt.imsave(eccv_dir,out_img_eccv16)
+            plt.imsave(siggraph_dir ,out_img_siggraph17)
     else:
         flash("No files to colorize")
     
@@ -77,7 +88,8 @@ def dl_img():
         os.remove(eccv_dir)
         os.remove(siggraph_dir)
         can_dl = False
-
+        del session['uid']
+        print(session.sid)
         return send_file(
             stream,
             as_attachment=True,
@@ -89,5 +101,5 @@ def dl_img():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
    
